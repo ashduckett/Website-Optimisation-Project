@@ -454,7 +454,7 @@ var resizePizzas = function(size) {
     var newwidth = (document.querySelector(".randomPizzaContainer").offsetWidth + dx) + 'px';
 
     // Grabbing these as an array as iterating over an array is faster than doing the iteration for an HTMLCollection
-    pizzaElements = [].slice.call(document.querySelectorAll(".randomPizzaContainer"));
+    var pizzaElements = [].slice.call(document.querySelectorAll(".randomPizzaContainer"));
 
 
     for (var i = 0; i < document.querySelectorAll(".randomPizzaContainer").length; i++) {
@@ -535,9 +535,7 @@ function updatePositions() {
 }
 
 // runs updatePositions on scroll
-window.addEventListener('scroll', function() {
-  window.requestAnimationFrame(updatePositions)
-});
+window.addEventListener('scroll', updatePositions);
 
 
 
@@ -551,12 +549,8 @@ document.addEventListener('DOMContentLoaded', function() {
     var elem = document.createElement('img');
     elem.className = 'mover';
     elem.src = "images/pizza.png";
-    
-
     elem.style.height = "100px";
     elem.style.width = "73.333px";
-    
-
     elem.basicLeft = (i % cols) * s;
     elem.style.top = (Math.floor(i / cols) * s) + 'px';
     document.querySelector("#movingPizzas1").appendChild(elem);
